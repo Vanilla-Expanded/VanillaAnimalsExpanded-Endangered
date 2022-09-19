@@ -482,7 +482,7 @@
 			<ComfyTemperatureMin>-8</ComfyTemperatureMin>
 			<ComfyTemperatureMax>50</ComfyTemperatureMax>
 			<FilthRate>10</FilthRate>
-			<MeatAmount>180</MeatAmount>
+			<MeatAmount>90</MeatAmount>
 		</statBases>
 		<race>
 			<herdAnimal>false</herdAnimal>
