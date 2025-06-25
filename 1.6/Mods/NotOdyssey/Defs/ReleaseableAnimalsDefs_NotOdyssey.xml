@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+
+	<VanillaAnimalsExpandedEndangered.ReleaseableAnimalsDef>
+		<defName>AEXP_ReleaseableAnimals_NotOdyssey</defName>
+		<releaseablePawns>			
+			
+			<li>AEXP_Panda</li>
+			
+		</releaseablePawns>							
+	</VanillaAnimalsExpandedEndangered.ReleaseableAnimalsDef>
+
+
+
+
+
+
+
+</Defs>
