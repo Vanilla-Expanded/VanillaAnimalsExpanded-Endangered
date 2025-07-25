@@ -21,7 +21,7 @@ namespace VanillaAnimalsExpandedEndangered
 
         public override string SettingsCategory()
         {
-            return "Vanilla Animals Expanded - Endangered";
+            return "VAE - Endangered";
         }
 
         public override void WriteSettings()

@@ -29,34 +29,14 @@ namespace VanillaAnimalsExpandedEndangered
 				List<ReleaseableAnimalsDef> allReleaseableLists =  DefDatabase<ReleaseableAnimalsDef>.AllDefsListForReading;
                 foreach (ReleaseableAnimalsDef individualList in allReleaseableLists) {
 					animalListResult.AddRange(individualList.releaseablePawns);
-
-
 				}
 				return animalListResult;
-			}
-		
+			}		
 		}
-			
-			
-			
 
 		public static HashSet<PawnKindDef> animalsToBanish = animalList.ToHashSet();
 		
-		/*new HashSet<PawnKindDef>
-		{
-			animalList
-			DefDatabase<PawnKindDef>.GetNamed("AEXP_AfricanWildDog"),
-			DefDatabase<PawnKindDef>.GetNamed("AEXP_BlackFootedFerret"),
-			DefDatabase<PawnKindDef>.GetNamed("AEXP_BlackRhino"),
-			DefDatabase<PawnKindDef>.GetNamed("AEXP_Bonobo"),
-			DefDatabase<PawnKindDef>.GetNamed("AEXP_Moa"),
-			DefDatabase<PawnKindDef>.GetNamed("AEXP_Panda"),
-			DefDatabase<PawnKindDef>.GetNamed("AEXP_Pangolin"),
-			DefDatabase<PawnKindDef>.GetNamed("AEXP_Quagga"),
-			DefDatabase<PawnKindDef>.GetNamed("AEXP_RockhopperPenguin"),
-			DefDatabase<PawnKindDef>.GetNamed("AEXP_TasmanianDevil"),
-			DefDatabase<PawnKindDef>.GetNamed("AEXP_Thylacine")
-		};*/
+	
 		public static void Postfix(ref IEnumerable<Gizmo> __result, Pawn __instance)
 		{
 			if (__instance.Faction == Faction.OfPlayer && (animalsToBanish.Contains(__instance.kindDef) || (VanillaAnimalsExpandedEndangeredMod.settings.addBanishToAllAnimals&& __instance.kindDef.RaceProps.Animal&& !__instance.kindDef.RaceProps.FenceBlocked&& !__instance.Downed && !__instance.Dead)))
@@ -71,12 +51,38 @@ namespace VanillaAnimalsExpandedEndangered
 				{
 					Find.WindowStack.Add(new Dialog_MessageBox("VAEE.ReleasingToTheWildConfirmationRepopulate".Translate(), "Confirm".Translate(), delegate
 					{
-						if (RCellFinder.TryFindRandomExitSpot(__instance, out IntVec3 spot, TraverseMode.PassDoors))
+                        if (__instance.playerSettings?.AreaRestrictionInPawnCurrentMap != null)
+                        {
+                            __instance.playerSettings.AreaRestrictionInPawnCurrentMap = null;
+                        }
+                        if (!__instance.MapHeld.CanEverExit)
+                        {
+                            if (__instance.MapHeld.IsPocketMap)
+                            {
+                                foreach (Thing item in __instance.MapHeld.listerThings.ThingsMatching(ThingRequest.ForGroup(ThingRequestGroup.MapPortal)))
+                                {
+                                    if (__instance.CanReach(item, PathEndMode.Touch, Danger.Deadly))
+                                    {
+                                       
+                                        __instance.SetFaction(null);
+                                        Job job = JobMaker.MakeJob(JobDefOf.EnterPortal, item);
+                                        __instance.jobs.TryTakeOrderedJob(job);
+                                    }
+                                }
+                            }
+                            
+                        }
+
+                        if (RCellFinder.TryFindRandomExitSpot(__instance, out IntVec3 spot, TraverseMode.PassAllDestroyableThings))
 						{
+							
 							__instance.SetFaction(null);
-							Job job = JobMaker.MakeJob(DefDatabase<JobDef>.GetNamed("AEXP_GotoTheWild"), spot);
+							Job job = JobMaker.MakeJob(InternalDefOf.AEXP_GotoTheWild, spot);
 							job.exitMapOnArrival = true;
-							__instance.jobs.TryTakeOrderedJob(job);
+                            job.locomotionUrgency = PawnUtility.ResolveLocomotion(__instance,LocomotionUrgency.Jog);
+                            job.expiryInterval = 999999;
+                            job.canBashDoors = true;
+                            __instance.jobs.TryTakeOrderedJob(job);
 						}
 					}, "VAEE.Cancel".Translate()));
 				};

@@ -47,10 +47,8 @@ namespace VanillaAnimalsExpandedEndangered
 
 		public static List<FactionDef> factionsToAffect = new List<FactionDef>
 		{
-			FactionDef.Named("OutlanderCivil"),
-			FactionDef.Named("OutlanderRough"),
-			FactionDef.Named("TribeCivil"),
-			FactionDef.Named("TribeRough")
+			InternalDefOf.OutlanderCivil,InternalDefOf.OutlanderRough,InternalDefOf.TribeCivil,
+            InternalDefOf.TribeRough
 		};
 		private void TryExitMap()
 		{

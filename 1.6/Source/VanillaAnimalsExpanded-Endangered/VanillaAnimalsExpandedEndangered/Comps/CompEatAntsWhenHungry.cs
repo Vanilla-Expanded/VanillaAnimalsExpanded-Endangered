@@ -30,7 +30,7 @@ namespace VanillaAnimalsExpandedEndangered
                 if ((this.parent.Map != null) && (pawn.needs.food.CurLevelPercentage <0.5f) && (pawn.Awake()))
                 {
                     //Log.Message("Conditions met");
-                    Job job = JobMaker.MakeJob(DefDatabase<JobDef>.GetNamed("AEXP_IngestAnts", true),this.parent);
+                    Job job = JobMaker.MakeJob(InternalDefOf.AEXP_IngestAnts,this.parent);
                     job.count = 1;
                     pawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
 

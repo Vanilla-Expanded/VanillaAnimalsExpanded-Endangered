@@ -294,6 +294,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DefOfs\InternalDefOf.cs" />
     <Compile Include="Defs\ReleaseableAnimalsDef.cs" />
     <Compile Include="Harmony\Gizmo_Patch.cs" />
     <Compile Include="Incident\IncidentWorker_ExtintAnimalsPasses.cs" />
@@ -308,5 +309,6 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

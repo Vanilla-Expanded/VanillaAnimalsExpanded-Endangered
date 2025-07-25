@@ -40,20 +40,6 @@ namespace VanillaAnimalsExpandedEndangered
 
 		public static HashSet<PawnKindDef> extintPawnKinds = animalList.ToHashSet();
 
-		/*public static HashSet<PawnKindDef> extintPawnKinds = new HashSet<PawnKindDef>
-		{
-			DefDatabase<PawnKindDef>.GetNamed("AEXP_AfricanWildDog"),
-			DefDatabase<PawnKindDef>.GetNamed("AEXP_BlackFootedFerret"),
-			DefDatabase<PawnKindDef>.GetNamed("AEXP_BlackRhino"),
-			DefDatabase<PawnKindDef>.GetNamed("AEXP_Bonobo"),
-			DefDatabase<PawnKindDef>.GetNamed("AEXP_Moa"),
-			DefDatabase<PawnKindDef>.GetNamed("AEXP_Panda"),
-			DefDatabase<PawnKindDef>.GetNamed("AEXP_Pangolin"),
-			DefDatabase<PawnKindDef>.GetNamed("AEXP_Quagga"),
-			DefDatabase<PawnKindDef>.GetNamed("AEXP_RockhopperPenguin"),
-			DefDatabase<PawnKindDef>.GetNamed("AEXP_TasmanianDevil"),
-			DefDatabase<PawnKindDef>.GetNamed("AEXP_Thylacine")
-		};*/
 
 		protected override bool TryExecuteWorker(IncidentParms parms)
 		{
