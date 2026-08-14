@@ -3,7 +3,7 @@
 
   <IncidentDef>
     <defName>AEXP_ExtintAnimalsPasses</defName>
-    <label>extint animals pass</label>
+    <label>extinct animals pass</label>
     <category>Misc</category>
     <targetTags>
       <li>Map_PlayerHome</li>
